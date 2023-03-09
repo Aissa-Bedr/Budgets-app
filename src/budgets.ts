@@ -1,5 +1,5 @@
 import { data } from "./data";
-import { updateBalace, updateExpenses, updateStorage, updateTotalBudget } from "./helpers/script";
+import { updateBalace, updateErrorMessage, updateExpenses, updateStorage, updateTotalBudget } from "./helpers/script";
 import { Input } from "./types/app";
 import { Budgets, ControlsValues } from "./types/main";
 
@@ -52,9 +52,20 @@ export function addBudget(): Budgets | false {
         productCost: parseFloat(productCostInput.value),
     };
 
-    if (!productTitleInput.value || !productCostInput.value || parseFloat(productCostInput.value) < 0) return false;
+    if (!productTitleInput.value || !productCostInput.value) {
+        updateErrorMessage("Product can't be empty !");
+        return false;
+    }
 
-    if (budget.productCost + data.controlsValues.expenses > data.controlsValues.totalBudget) return false;
+    if (parseFloat(productCostInput.value) < 0) {
+        updateErrorMessage("Product can't be less than zero !");
+        return false;
+    }
+
+    if (budget.productCost + data.controlsValues.expenses > data.controlsValues.totalBudget) {
+        updateErrorMessage("Product cost and expenses values can't be bigger than total budget !");
+        return false;
+    }
 
     data.budgetsList.push(budget);
     updateBudgets();
@@ -96,11 +107,20 @@ export function removeBudget(id: number): void {
 }
 
 export function setBudget(): number | false {
-    if (!totalAmountInput.value || parseFloat(totalAmountInput.value) < 0) {
+    if (!totalAmountInput.value) {
+        updateErrorMessage("Amount can't be empty !");
         return false;
     }
 
-    if (parseFloat(totalAmountInput.value) < data.controlsValues.expenses) return false;
+    if (parseFloat(totalAmountInput.value) < 0) {
+        updateErrorMessage("Amount can't be less than zero !");
+        return false;
+    }
+
+    if (parseFloat(totalAmountInput.value) < data.controlsValues.expenses) {
+        updateErrorMessage("Total amount can't be less than expenses cost !");
+        return false;
+    }
 
     data.controlsValues.totalBudget = parseFloat(totalAmountInput.value);
     updateTotalBudget();
