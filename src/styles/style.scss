@@ -1,0 +1,169 @@
+@import "./helpers/bases";
+@import "./helpers/mixins";
+@import "./helpers/media";
+@import "./helpers/variables";
+
+.light {
+    --primaryColor: #0075ff;
+    --backgroundColor: #f1f5f9;
+    --cardColor: #fff;
+    --color: #212529;
+    --headerColor: #555;
+    --inputbackgroundColor: #f1f5f9;
+}
+
+.dark {
+    --primaryColor: #405189;
+    --backgroundColor: #1a1d21;
+    --cardColor: #212529;
+    --color: #fff;
+    --headerColor: #fff;
+    --inputbackgroundColor: #292e32;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--backgroundColor);
+    color: var(--color);
+
+    nav {
+        @include flex(row);
+        @include cardApperance(var(--cardColor), var(--color));
+        align-items: center;
+        justify-content: space-between;
+        margin: $space 0;
+
+        .founder {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: var(--headerColor);
+        }
+
+        .theme_switcher {
+            button {
+                @include iconButton();
+
+                img {
+                    width: 1.25rem;
+                }
+            }
+        }
+    }
+
+    .budget_container {
+        @include flex(column);
+        gap: $space;
+
+        .controls_container {
+            @include flex(column);
+            gap: $space;
+
+            .budget,
+            .expenses {
+                @include flex(column);
+                @include cardApperance(var(--cardColor), var(--color));
+                gap: $space;
+            }
+
+            .expenses {
+                .btns_container {
+                    @include flex(row);
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .reset_btn {
+                        display: none;
+
+                        &.active {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            input {
+                @include input();
+            }
+
+            button {
+                @include button();
+            }
+        }
+
+        .values_container {
+            @include flex(row);
+            align-items: center;
+            justify-content: space-between;
+            @include cardApperance(var(--primaryColor), #fff);
+
+            .values_item {
+                @include flex(column);
+                align-items: center;
+                justify-content: center;
+                gap: $space;
+
+                .values_title {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                }
+
+                .values_amount {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+        .expenses_list {
+            @include cardApperance(var(--cardColor), var(--color));
+
+            .expenses_list_items {
+                @include flex(column);
+                gap: $space;
+                margin-top: $space;
+
+                .expenses_item {
+                    @include flex(row);
+                    position: relative;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 1rem;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 0.2rem;
+                        height: 100%;
+                        left: 0;
+                        top: 0;
+                        background-color: var(--primaryColor);
+                    }
+
+                    .expenses_item_controls {
+                        @include flex();
+                        gap: calc($space * 2);
+
+                        button {
+                            @include iconButton();
+
+                            img {
+                                width: 1.25rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .card {
+        padding: 1rem;
+        border-radius: $raduis;
+    }
+
+    h3 {
+        color: var(--headerColor);
+        text-transform: capitalize;
+    }
+}

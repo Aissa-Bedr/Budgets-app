@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/budget.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./src/styles/style.scss" />
+        <title>Budget App | Aissa</title>
+    </head>
+    <body class="light">
+        <div id="app">
+            <div class="container">
+                <nav class="card">
+                    <h3>Budget app</h3>
+
+                    <p class="founder">Aissa Bedr</p>
+
+                    <div class="theme_switcher">
+                        <button class="theme_switcher_btn">
+                            <img class="theme_img" src="/moon.svg" alt="theme_img" />
+                        </button>
+                    </div>
+                </nav>
+
+                <div class="budget_container">
+                    <div class="controls_container">
+                        <div class="budget card">
+                            <h3>Budget</h3>
+                            <input id="total_amount_input" type="number" placeholder="Enter Total Amount" />
+                            <button id="set_budget_btn">Set budget</button>
+                        </div>
+                        <div class="expenses card">
+                            <h3>Expenses</h3>
+                            <input id="product_title_input" type="text" placeholder="Enter Title of Product" />
+                            <input id="product_cost_input" type="number" placeholder="Enter Cost of Product" />
+                            <div class="btns_container">
+                                <button id="check_amount_btn">Check amount</button>
+                                <button id="reset_btn" class="reset_btn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="values_container card">
+                        <div class="values_item">
+                            <p class="values_title">Total budget</p>
+                            <p id="total_budget" class="values_amount">0</p>
+                        </div>
+
+                        <div class="values_item">
+                            <p class="values_title">Expenses</p>
+                            <p id="expenses" class="values_amount">0</p>
+                        </div>
+
+                        <div class="values_item">
+                            <p class="values_title">Balance</p>
+                            <p id="balance" class="values_amount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="expenses_list card">
+                        <h3>Expenses list</h3>
+
+                        <div class="expenses_list_items"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

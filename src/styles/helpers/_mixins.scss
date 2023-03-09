@@ -1,0 +1,62 @@
+@mixin flex($type: row) {
+    display: flex;
+    flex-direction: $type;
+}
+
+@mixin editShapes($rmBorder: true, $raduis: 0.3rem) {
+    outline: none;
+    border-radius: $raduis;
+
+    @if $rmBorder {
+        border: none;
+    } @else {
+        border: 1px solid #000;
+    }
+}
+
+@mixin cardApperance($bgColor, $color) {
+    background-color: $bgColor;
+    color: $color;
+}
+
+@mixin input {
+    background-color: var(--inputbackgroundColor);
+    color: var(--color);
+    padding: 0.4rem 0.7rem;
+    @include editShapes();
+}
+
+@mixin button {
+    background-color: var(--primaryColor);
+    color: #fff;
+    width: fit-content;
+    padding: 0.4rem 0.7rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    @include editShapes();
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        background-color: var(--inputbackgroundColor);
+        color: var(--color);
+    }
+}
+
+@mixin iconButton() {
+    @include flex();
+    align-items: center;
+    justify-content: center;
+    @include editShapes();
+    padding: 0.4rem;
+    cursor: pointer;
+    background-color: var(--primaryColor);
+    transition-duration: 0.3s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
