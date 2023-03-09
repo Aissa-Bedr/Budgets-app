@@ -155,6 +155,15 @@
                 }
             }
         }
+
+        .error_message {
+            color: red;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
     }
 
     .card {
