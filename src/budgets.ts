@@ -67,6 +67,11 @@ export function addBudget(): Budgets | false {
         return false;
     }
 
+    if (!data.controlsValues.balance) {
+        updateErrorMessage("You don't have enough money to complete this process !");
+        return false;
+    }
+
     if (budget.productCost + data.controlsValues.expenses > data.controlsValues.totalBudget) {
         updateErrorMessage("Product and expenses cost can't be bigger than total budget !");
         return false;
