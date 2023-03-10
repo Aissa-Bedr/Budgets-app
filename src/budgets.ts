@@ -62,9 +62,21 @@ export function addBudget(): Budgets | false {
         return false;
     }
 
-    if (budget.productCost + data.controlsValues.expenses > data.controlsValues.totalBudget) {
-        updateErrorMessage("Product cost and expenses values can't be bigger than total budget !");
+    if (!data.controlsValues.totalBudget) {
+        updateErrorMessage("Please add a total budget !");
         return false;
+    }
+
+    if (budget.productCost + data.controlsValues.expenses > data.controlsValues.totalBudget) {
+        updateErrorMessage("Product and expenses cost can't be bigger than total budget !");
+        return false;
+    }
+
+    for (const budgets of data.budgetsList) {
+        if (budget.productTitle === budgets.productTitle && budget.productCost === budgets.productCost) {
+            updateErrorMessage(`Product ${budget.productTitle} all ready exist !`);
+            return false;
+        }
     }
 
     data.budgetsList.push(budget);
